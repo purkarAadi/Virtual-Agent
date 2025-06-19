@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Electro Case Support</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .header {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .logo-text span:nth-child(1) { color: #00ffff; }
+    .logo-text span:nth-child(2) { color: #00ff7f; }
+    .logo-text span:nth-child(3) { color: #ffcc00; }
+    .logo-text span:nth-child(4) { color: #ff6699; }
+    .logo-text span:nth-child(5) { color: #ff6600; }
+    .logo-text span:nth-child(6) { color: #66ccff; }
+    .logo-text span:nth-child(7) { color: #ff0033; }
+
+    .message {
+      font-size: 1.2em;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header logo-text">
+    WelCome to Electro Care Support Team
+  </div>
+  <div class="message">
+    Our AI chatbot is available to assist you 24/7.
+  </div>
+
+  <!-- Live Chat Widget Script -->
+  <script id="Microsoft_Omnichannel_LCWidget"
+          src="https://oc-cdn-public-ind.azureedge.net/livechatwidget/scripts/LiveChatBootstrapper.js"
+          data-app-id="a46f6e2b-1816-4911-935f-f9bd48ac5952"
+          data-lcw-version="prod"
+          data-org-id="fc3707f5-974a-f011-be53-002248d5c8d8"
+          data-org-url="https://m-fc3707f5-974a-f011-be53-002248d5c8d8.in.omnichannelengagementhub.com"
+          async>
+  </script>
+
+  <script>
+    // Wait until the widget is ready
+    window.addEventListener('lcw:ready', () => {
+      // Retry opening chat a couple times if needed
+      function tryOpenChat(attemptsLeft = 5) {
+        if (window.Microsoft && Microsoft.Omnichannel && Microsoft.Omnichannel.LiveChatWidget) {
+          Microsoft.Omnichannel.LiveChatWidget.Api.openChat();
+        } else if (attemptsLeft > 0) {
+          setTimeout(() => tryOpenChat(attemptsLeft - 1), 500);
+        }
+      }
+      tryOpenChat();
+    });
+  </script>
+
+</body>
+</html>
